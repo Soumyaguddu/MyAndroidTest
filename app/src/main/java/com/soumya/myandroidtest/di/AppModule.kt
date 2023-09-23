@@ -19,7 +19,7 @@ object AppModule {
     @Provides
     fun provideBaseUrl() = Constants.BASE_URL
 
-
+/* Use Hilt DI and Moshi For Convert JSON to List Data*/
     private  val  moshi= Moshi.Builder()
         .add(KotlinJsonAdapterFactory())
         .build()!!
