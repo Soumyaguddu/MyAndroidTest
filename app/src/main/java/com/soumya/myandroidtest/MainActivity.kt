@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
     private val viewModel: ImageShowViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        /*Use Splash Api In this Project*/
         installSplashScreen()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
