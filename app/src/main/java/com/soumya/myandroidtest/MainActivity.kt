@@ -51,6 +51,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setUpRecyclerView() {
+        /*Set Recyclerview and show Popup With Clickable Data*/
         imageShowAdapter = ImageShowAdapter(onItemClick = {
 
             showTitleAndDescInPopup(it)
