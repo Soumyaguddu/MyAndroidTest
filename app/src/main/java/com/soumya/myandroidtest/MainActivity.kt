@@ -2,6 +2,8 @@ package com.soumya.myandroidtest
 
 import android.app.Dialog
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.WindowManager
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -28,10 +30,13 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var imageShowAdapter: ImageShowAdapter
     private val viewModel: ImageShowViewModel by viewModels()
+    var keepSplashOnScreen = true
+    val delay = 5000L
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         /*Use Splash Api In this Project*/
-        installSplashScreen()
+        installSplashScreen().setKeepOnScreenCondition { keepSplashOnScreen }
+        Handler(Looper.getMainLooper()).postDelayed({ keepSplashOnScreen = false }, delay)
         /*Use ViewBinding For This Project */
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -41,7 +46,6 @@ class MainActivity : AppCompatActivity() {
 
             viewModel.getAllPagingImages.collectLatest { response ->
                 binding.apply {
-                    delay(500)
                     progressBar.isVisible = false
                     recyclerView.isVisible = true
                 }
